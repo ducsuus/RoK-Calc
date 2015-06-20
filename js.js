@@ -8,20 +8,51 @@ canvas.style.height = "800px";
 canvas.width = 800;
 canvas.height = 800;
 
-// Make sure that when the mouse is clicked, a function is called
+// Mouse events
 canvas.addEventListener("mousedown", mouseDown, false);
+canvas.addEventListener("mouseup", mouseUp, false);
+canvas.addEventListener("mousemove", mouseMove, false);
+
+// Make sure that if the canvas is selected, we unselect it
+canvas.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
 
 // Create the context
 var c = canvas.getContext("2d");
 
 var grid = [];
 
+function getBlockCoords(x, y){
+    var squareSize = canvas.width / grid.length;
+
+    var xcoord = Math.floor(x / squareSize);
+    var ycoord = Math.floor(y / squareSize);
+
+}
+
 // Function called on mouse down. Note that this will not work if the canvas does not start at the top left of the page.
 function mouseDown(event){
-    alert("x: " + event.pageX + " y: " + event.pageY);
 
     var mouse_x = event.pageX;
     var mouse_y = event.pageY;
+
+    updateGrid();
+}
+
+function mouseUp(event){
+
+    var mouse_x = event.pageX;
+    var mouse_y = event.pageY;
+
+}
+
+function mouseMove(event){
+
+    var mouse_x = event.pageX;
+    var mouse_y = event.pageY;
+
+    if(event.which == 1)
+        console.log(mouse_x + " " + mouse_y);
+
 }
 
 function clearGrid(){
@@ -69,10 +100,12 @@ function getRandomColor() {
 // Function to draw an icon of something, like a block.
 function drawIcon(x, y, w, h, icon){
 
-    c.fillStyle = getRandomColor();
-    c.fillRect(x, y, x + w, y + h);
+    if (icon == "e")
+        c.fillStyle = getRandomColor();
+    if (icon == "r")
+        c.fillStyle = "#FF0000";
 
-    console.log(x + " " + y + " " + (x + w) + " " + (y + h));
+    c.fillRect(x, y, x + w, y + h);
 
 }
 
@@ -82,21 +115,14 @@ function updateGrid(){
     var width = grid.length;
     var height = grid[0].length;
 
-    var squareSize = Math.max(width, height)
-
-    squareSize = canvas.width / width;
+    var squareSize = canvas.width / width;
 
     for (var x = 0; x < width; x++){
         for (var y = 0; y < height; y++){
-            drawIcon(x * squareSize, y * squareSize, squareSize, squareSize, "icon");
+            drawIcon(x * squareSize, y * squareSize, squareSize, squareSize, grid[x][y]);
         }
     }
-
-    console.log("FINISHED!!!!")
 }
-
-changeSize(10);
-updateGrid();
 
 changeSize(10);
 updateGrid();
