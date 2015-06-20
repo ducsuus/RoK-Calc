@@ -2,22 +2,27 @@
 
 var canvas = document.getElementById("wallselect");
 
-
-/*canvas.style.width = (window.innerWidth - 20).toString() + "px";
-canvas.style.height = (window.innerWidth - 20).toString() + "px";
-canvas.width = window.innerWidth.toString();
-canvas.height = window.innerWidth.toString();*/
-
 // Wanted to make the canvas small for dev purposes, TODO: maybe remove this.
 canvas.style.width = "800px";
 canvas.style.height = "800px";
 canvas.width = 800;
 canvas.height = 800;
 
+// Make sure that when the mouse is clicked, a function is called
+canvas.addEventListener("mousedown", mouseDown, false);
+
 // Create the context
 var c = canvas.getContext("2d");
 
 var grid = [];
+
+// Function called on mouse down. Note that this will not work if the canvas does not start at the top left of the page.
+function mouseDown(event){
+    alert("x: " + event.pageX + " y: " + event.pageY);
+
+    var mouse_x = event.pageX;
+    var mouse_y = event.pageY;
+}
 
 function clearGrid(){
     c.fillStyle = "#FFFFFF";
@@ -79,13 +84,7 @@ function updateGrid(){
 
     var squareSize = Math.max(width, height)
 
-    if (false && width <= 10){
-        squareSize = canvas.width / 10;
-        console.log("dsadas");
-    }
-    else{
-        squareSize = canvas.width / width;
-    }
+    squareSize = canvas.width / width;
 
     for (var x = 0; x < width; x++){
         for (var y = 0; y < height; y++){
