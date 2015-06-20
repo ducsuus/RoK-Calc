@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Canvas Test</title>
+    </head>
+    
+    <body>
+        <canvas id="canvas" width="500" height="400" style="border:1px solid #000000;">
+            This shows if your browser does not suport the canvas element 
+        </canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        
+        function draw_b() {
+            var canvas = document.getElementById("canvas");
+            var context = canvas.getContext("2d");
+            context.fillRect(50, 25, 150, 100);
+        }
+        
+        draw_b();
+    </script>
+    </body>
+</html>
