@@ -11,7 +11,10 @@ block["block"] = [
 		["hay", 9999], 
 		["clay", 9999], 
 		["iron", 9999], 
-		["stone slab", 9999]
+		["stone slab", 9999],
+        ["charcoal", 9999],
+        ["water", 9999],
+        ["iron ore", 9999]
 		];
 
 block["sod"] = [["dirt", 5]];
@@ -21,8 +24,9 @@ block["wood"] = [["wood", 30]];
 block["log"] = [["wood", 70]];
 block["cobble"] = [["stone", 30]];
 block["iron"] = [["wood", 50], ["iron", 1]];
+block["ironFull"] = [["wood", 50], ["iron ore", 10]];
 block["stone"] = [["stone slab", 1], ["clay", 5]];
-
+block["stoneFull"] = [["stone", 100],["charcoal", 4], ["water", 8] ,["clay", 5]];
 
 function updateInfo(total_blocks, materials) {
     results.innerHTML = materials;
