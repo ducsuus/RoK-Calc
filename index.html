@@ -13,8 +13,7 @@ Wall height: <input type='text' id='wall_height' value="2"/><br>
 </form>
 
 <table id="info" style="border: 2px solid black;">
-<tr id="info-head"><td><b>Resource</b></td><td><b>Count</b></td></tr>
-
+    <tr id="info-head"><td><b>Resource</b></td><td><b>Count</b></td></tr>
 </table>
 
 <div id="info-calc-results">
@@ -54,27 +53,24 @@ function getMaterials(total_blocks, block_type)
 		materials.push([block[block_type][i][0], block[block_type][i][1] * total_blocks]);
 	}
 
-	return materials
+    return materials
 }
 function submitdata()
 {
-	var block_type = "cobble";
-	var side_length = document.getElementById("side_length").value;
- 	var wall_height = document.getElementById("wall_height").value;
+    var block_type = "cobble";
+    var side_length = document.getElementById("side_length").value;
+    var wall_height = document.getElementById("wall_height").value;
 
  	if(!isNaN(side_length) && !isNaN(wall_height)){
 
-	 	var total_blocks = side_length * 4 * wall_height;
+        var total_blocks = side_length * 4 * wall_height;
+		var materials = getMaterials(total_blocks, block_type);
 
-	 	var materials = getMaterials(total_blocks, block_type);
-
-	 	updateInfo(total_blocks, materials);
-
-	 }
-
-
+        updateInfo(total_blocks, materials);
+    }
 }
 </script>
 </body>
+
 
 </head>
