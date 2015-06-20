@@ -50,7 +50,6 @@ function getMaterials(total_blocks, block_type) {
 }
 
 function submitdata() {
-
 	var block_type = document.getElementById("block_type").value;
     var width = document.getElementById("width").value;
     var length = document.getElementById("length").value;
