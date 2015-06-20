@@ -52,12 +52,13 @@ function getMaterials(total_blocks, block_type) {
 function submitdata() {
 
 	var block_type = document.getElementById("block_type").value;
-    var side_length = document.getElementById("side_length").value;
+    var width = document.getElementById("width").value;
+    var length = document.getElementById("length").value;
     var wall_height = document.getElementById("wall_height").value;
 
-    if (!isNaN(side_length) && !isNaN(wall_height)) {
+    if (!isNaN(width) && !isNaN(wall_height) && !isNaN(length)) {
 
-        var total_blocks = side_length * 4 * wall_height;
+        var total_blocks = width * length * wall_height * 2;
         var materials = getMaterials(total_blocks, block_type);
 
         updateInfo(total_blocks, materials);
