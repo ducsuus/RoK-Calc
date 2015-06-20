@@ -1,7 +1,7 @@
 # RoK-Calc
 A calculator for building bases in the game Reign Of Kings.
 
-# Reign Of Kings Calculator Specification
+# RoK-Calc Specification
 
 A calculator designed to make working out how many materials are needed to build a base in the game Reign Of Kings.
 
