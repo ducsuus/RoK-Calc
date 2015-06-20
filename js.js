@@ -21,28 +21,32 @@ var c = canvas.getContext("2d");
 
 var grid = [];
 
-function getBlockCoords(x, y){
-    var squareSize = canvas.width / grid.length;
-
-    var xcoord = Math.floor(x / squareSize);
-    var ycoord = Math.floor(y / squareSize);
-
-}
-
 // Function called on mouse down. Note that this will not work if the canvas does not start at the top left of the page.
 function mouseDown(event){
 
     var mouse_x = event.pageX;
     var mouse_y = event.pageY;
 
-    updateGrid();
+    if(event.which == 1 || event.which == 3){
+        var squareSize = canvas.width / grid.length;
+
+        var xcoord = Math.floor(mouse_x / squareSize);
+        var ycoord = Math.floor(mouse_y / squareSize);
+
+        if (event.which == 1)
+            grid[xcoord][ycoord] = "r";
+        if (event.which == 3)
+            grid[xcoord][ycoord] = "e";
+
+        updateGrid()
+    }
+
 }
 
 function mouseUp(event){
 
     var mouse_x = event.pageX;
     var mouse_y = event.pageY;
-
 }
 
 function mouseMove(event){
@@ -50,9 +54,19 @@ function mouseMove(event){
     var mouse_x = event.pageX;
     var mouse_y = event.pageY;
 
-    if(event.which == 1)
-        console.log(mouse_x + " " + mouse_y);
+    if(event.which == 1 || event.which == 3){
+        var squareSize = canvas.width / grid.length;
 
+        var xcoord = Math.floor(mouse_x / squareSize);
+        var ycoord = Math.floor(mouse_y / squareSize);
+
+        if (event.which == 1)
+            grid[xcoord][ycoord] = "r";
+        if (event.which == 3)
+            grid[xcoord][ycoord] = "e";
+
+        updateGrid()
+    }
 }
 
 function clearGrid(){
