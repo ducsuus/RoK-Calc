@@ -5,9 +5,19 @@
    </head>
    <body>
       <form name="user-input">
-         Side length: <input type='text' id='side_length' value="2"/><br>
-         Wall height: <input type='text' id='wall_height' value="2"/><br>
-         <input type="button" value="Submit" onclick="submitdata()">
+		Block type: <select id="block_type">
+			<option value="sod">Sod Block</option>
+			<option value="thatch">Thatch Block</option>
+			<option value="clay">Clay Block</option>
+			<option value="wood">Wood Block</option>
+			<option value="log">Log Block</option>
+			<option value="cobble">Cobblestone Block</option>
+			<option value="iron">Reinforced Wood Block</option>
+			<option value="stone">Stone Block</option>
+		</select><br>
+        Side length: <input type='text' id='side_length' value="1"/><br>
+        Wall height: <input type='text' id='wall_height' value="0.25"/><br>
+        <input type="button" value="Submit" onclick="submitdata()">
       </form>
       <table id="info" style="border: 2px solid black;">
          <tr id="info-head">
@@ -16,7 +26,7 @@
          </tr>
       </table>
       <div id="info-calc-results">
-         dsadsasaddsa
+        dsadsasaddsa
       </div>
    </body>
    <script src="js.js"></script>
