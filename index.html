@@ -1,23 +1,19 @@
-<!-- RoK-Calc, source version. Copyright (c) Ducsuus.com. Produced by Joe Mattelaer, James Muir, and Nial Morrison. -->
+<!-- RoK-Calc - testing with the idea of wall select.-->
 <html>
    <head>
-      <title>RoK Calculator</title>
+      <title>RoK Calculator - Wall Select</title>
    </head>
    <body>
-      <form name="user-input">
-         Side length: <input type='text' id='side_length' value="2"/><br>
-         Wall height: <input type='text' id='wall_height' value="2"/><br>
-         <input type="button" value="Submit" onclick="submitdata()">
-      </form>
-      <table id="info" style="border: 2px solid black;">
-         <tr id="info-head">
-            <td><b>Resource</b></td>
-            <td><b>Count</b></td>
-         </tr>
-      </table>
-      <div id="info-calc-results">
-         dsadsasaddsa
-      </div>
+
+   <canvas id="wallselect">Bad luck :/ Canvas is not supported.</canvas>
+
+   <br>Size: <input type='text' id='grid_size' value="10" onchange="updateSize()"/><br>
+   Grid size (how big the grid is on the page, to zoom in increase this): 
+   <input type='text' id='grid_display_size' value="800" onchange="updateGridSize()"/><br>
+
+   <b><i>Small (leather) crests are 30*30, medium (iron) crests are 50*50, large (steel) crests are 70*70.</i></b>
+
+
    </body>
    <script src="js.js"></script>
    <link rel="stylesheet" type="text/css" href="style.css">

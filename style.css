@@ -1,0 +1,16 @@
+/* RoK-Calc wallselect test css */
+
+body{
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+#wallselect{
+
+	background-color: red;
+
+	width: 200px;
+	height: 100px;
+
+}

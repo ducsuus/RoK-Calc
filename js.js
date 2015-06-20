@@ -1,53 +1,103 @@
-// RoK-Calc JavaScript
+/* RoK-Calc wallselect test js */
 
-var results = document.getElementById("info-calc-results");
-
-var block = new Array();
-
-block["block"] = [
-    ["stone", 9999],
-    ["wood", 9999]
-];
-block["cobble"] = [
-    ["stone", 30]
-];
+var canvas = document.getElementById("wallselect");
 
 
-function updateInfo(total_blocks, materials) {
-    results.innerHTML = materials;
+/*canvas.style.width = (window.innerWidth - 20).toString() + "px";
+canvas.style.height = (window.innerWidth - 20).toString() + "px";
+canvas.width = window.innerWidth.toString();
+canvas.height = window.innerWidth.toString();*/
+
+// Wanted to make the canvas small for dev purposes, TODO: maybe remove this.
+canvas.style.width = "800px";
+canvas.style.height = "800px";
+canvas.width = 800;
+canvas.height = 800;
+
+// Create the context
+var c = canvas.getContext("2d");
+
+var grid = [];
+
+function clearGrid(){
+    c.fillStyle = "#FFFFFF";
+    c.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function getMaterials(total_blocks, block_type) {
-    /* Note that the array cannot be directly copied, therefore the following code is non functional and serves as an example of what not to do (JavaScript cannot copy arrays)*/
-    /*
-    console.log("materials: " + block[block_type]);
-    var materials = block[block_type].slice(0);
-
-    for(var i = 0; i < materials.length; i++){
-    	materials[i][1] *= total_blocks;
-    }*/
-
-    // Create new array to store materials list in
-    var materials = [];
-
-    // Loop through the recipe, copy, and adjust all recipe materials
-    for (var i = 0; i < block[block_type].length; i++) {
-        materials.push([block[block_type][i][0], block[block_type][i][1] * total_blocks]);
-    }
-
-    return materials
-}
-
-function submitdata() {
-    var block_type = "cobble";
-    var side_length = document.getElementById("side_length").value;
-    var wall_height = document.getElementById("wall_height").value;
-
-    if (!isNaN(side_length) && !isNaN(wall_height)) {
-
-        var total_blocks = side_length * 4 * wall_height;
-        var materials = getMaterials(total_blocks, block_type);
-
-        updateInfo(total_blocks, materials);
+// Function to re-size the grid, clearing out the old grid contents
+function changeSize(size){
+    grid = []
+    for (var x = 0; x < size; x++){
+        grid.push([]);
+        for (var y = 0; y < size; y++){
+            grid[x].push("e");
+        }
     }
 }
+
+// Function to be called upon the update of the size by the user
+function updateSize(){
+    // Ensure the grid is never bigger than 1000*1000
+    changeSize(Math.min(100, document.getElementById("grid_size").value));
+    updateGrid();
+}
+
+// Function to be called upon the update of the grid size by the user
+function updateGridSize(){
+    var grid_display_size = document.getElementById("grid_display_size").value;
+    canvas.style.width = grid_display_size.toString() + "px";
+    canvas.style.height = grid_display_size.toString() + "px";
+    canvas.width = grid_display_size;
+    canvas.height = grid_display_size;
+    updateGrid();
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Function to draw an icon of something, like a block.
+function drawIcon(x, y, w, h, icon){
+
+    c.fillStyle = getRandomColor();
+    c.fillRect(x, y, x + w, y + h);
+
+    console.log(x + " " + y + " " + (x + w) + " " + (y + h));
+
+}
+
+// Function to update the grid which the user sees
+function updateGrid(){
+    clearGrid();
+    var width = grid.length;
+    var height = grid[0].length;
+
+    var squareSize = Math.max(width, height)
+
+    if (false && width <= 10){
+        squareSize = canvas.width / 10;
+        console.log("dsadas");
+    }
+    else{
+        squareSize = canvas.width / width;
+    }
+
+    for (var x = 0; x < width; x++){
+        for (var y = 0; y < height; y++){
+            drawIcon(x * squareSize, y * squareSize, squareSize, squareSize, "icon");
+        }
+    }
+
+    console.log("FINISHED!!!!")
+}
+
+changeSize(10);
+updateGrid();
+
+changeSize(10);
+updateGrid();
