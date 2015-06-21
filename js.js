@@ -161,7 +161,7 @@ function addLayer(){
  Joe may have fixed this bug, however it is also likely he managed to forget about it. To check if the bug is still there, add 12 buttons, then remove the second lowest number 6 times. If when you add a new layer it is not named correctly (the total number of layers) the bug is still here. Probably. */
 function removeLayer(id){
 
-    if(confirm("Are you sure you want to delete this layer? (Layer " + id + ")")){
+    if(grid_list.length > 1 && confirm("Are you sure you want to delete this layer? (Layer " + id + ")")){
     // Remove the grid: remove 1 elements starting from the index id
     grid_list.splice(id, 1);
 
