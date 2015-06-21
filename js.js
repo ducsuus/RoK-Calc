@@ -92,6 +92,39 @@ var current_grid = 0;
 // The item currently being used to paint, TODO: re-evalutate the default value (its cobble for debug reasons)
 var paint_item = "cobble";
 
+// Function to duplicate a layer
+/* WARNING NOTE TODO:
+
+A "bug" in this is causing the array not to be duplicated, but for a reference to be copied :(
+
+This means that a "duplicated" layer, is just a reference to the original array, and therefore modification smade on one array apply to the other, as they are the same array...
+
+May be removed, but again Joe...
+*/
+function duplicateLayer(id){
+
+    console.log("b: " + grid_list.length);
+
+    /* So JavaScript loves to copy references to arrays, instead of "actual" arrays... We have to loop through the array and manually make a copy of each value... */
+
+    var new_grid = []
+    var size = grid_list[current_grid].length;
+    for (var x = 0; x < size; x++){
+        new_grid.push([]);
+        for (var y = 0; y < size; y++){
+            new_grid[x].push(grid_list[id][x][y]);
+        }
+    }
+
+    grid_list.splice(id, 0, new_grid);
+    // TODO: this could possible be an useless function call - if not needed, remove
+    updateGrid();
+    updateSideButtons();
+
+    console.log("a: " + grid_list.length);
+
+}
+
 // Function to switch to a layer, using a given ID (the id being the index of the layer in grid_list)
 function switchLayer(id){
     current_grid = id;
@@ -110,7 +143,7 @@ function updateSideButtons(){
     // Loop through all the layers, each time add the new button
     for (var i = 0; i < grid_list.length; i++){
         // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
-        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"alert('" + i + "-2');\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
+        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"duplicateLayer(" + i + ");\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
         sidebar.innerHTML += button_string;
     }
 
@@ -124,10 +157,9 @@ function addLayer(){
     // Find ourselves an ID to use for the next layer
     var id = grid_list.length;
 
-    var size = grid_list[current_grid].length;
-
     // Generate a new empty layer
     var new_grid = []
+    var size = grid_list[current_grid].length;
     for (var x = 0; x < size; x++){
         new_grid.push([]);
         for (var y = 0; y < size; y++){
