@@ -6,6 +6,10 @@ body{
 	margin: 0;
 }
 
+#item-paint{
+	display: inline-block;
+}
+
 #wallselect{
 
 	background-color: red;
@@ -13,4 +17,72 @@ body{
 	width: 200px;
 	height: 100px;
 
+	border: 2px solid black;
+
+	display: inline-block;
+
+}
+
+#sidebar {
+	background-color: red;
+	display: inline-block;
+	top: 0%;
+}
+
+#sidebar-container{
+	background-color: red;
+	height: 800px;
+	width: 200px;
+	display: inline-block;
+}
+
+#wallselect-container{
+	display: inline-block;
+}
+
+#button-container{
+	margin-left: auto;
+    margin-right: auto;
+
+    width: 428px;
+}
+
+/* The general button design */
+.paint-button{
+	border: 4px solid black;
+	width: 50px;
+	height: 50px;
+	background-color: blue;
+	background-size: 100% 100%;
+}
+
+/* Button textures */
+
+#button-sod {
+	background-image: url("sod.png");
+}
+#button-thatch {
+	background-image: url("thatch.png");
+}
+#button-clay {
+	background-image: url("clay.png");
+}
+#button-wood {
+	background-image: url("wood.png");
+}
+#button-log {
+	background-image: url("log.png");
+}
+#button-cobble {
+	background-image: url("cobble.png");
+}
+#button-iron {
+	background-image: url("iron.png");
+}
+#button-stone {
+	background-image: url("stone.png");
+}
+
+#under-container{
+	margin: 10px;
 }

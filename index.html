@@ -4,12 +4,51 @@
       <title>RoK Calculator - Wall Select</title>
    </head>
    <body>
-   <canvas id="wallselect" oncontextmenu="return false;">Bad luck :/ Canvas is not supported.</canvas>
-   <br>Size: <input type='text' id='grid_size' value="10" onchange="updateSize()"/><br>
-   Grid size (how big the grid is on the page, to zoom in increase this): 
-   <input type='text' id='grid_display_size' value="800" onchange="updateGridSize()"/><br>
 
-   <b><i>Small (leather) crests are 30*30, medium (iron) crests are 50*50, large (steel) crests are 70*70.</i></b>
+   <!-- Containers must be used to ensure that the sidebar and canvas are inline 
+   <div id="sidebar-container">sdasadasdasd<br><br><br><br><br><br>
+   </div>
+   <div id="wallselect-container">
+      <canvas id="wallselect" oncontextmenu="return false;">Bad luck :/ Canvas is not supported.</canvas>
+   </div>-->
+
+   <div id="draw-container">
+
+      <div id="sidebar">
+         Joe Text was here
+      </div>
+
+      <div id="wallselect-container">
+         <canvas id="wallselect" oncontextmenu="return false;"></canvas>
+      </div>
+
+   </div>
+
+   <br>
+
+   <div id="button-container">
+      <button type="button" class="paint-button" id="button-sod"  onclick="paint_item='sod';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-thatch"  onclick="paint_item='thatch';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-clay"  onclick="paint_item='clay';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-wood"  onclick="paint_item='wood';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-log"  onclick="paint_item='log';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-cobble"  onclick="paint_item='cobble';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-iron"  onclick="paint_item='iron';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-stone"  onclick="paint_item='stone';updateItemPaintButtonHighlight();"></button>
+   </div>
+
+   <div id="under-container">
+      <br>Size: <input type='text' id='grid_size' value="10" onchange="updateSize()"/><br>
+      Grid size (how big the grid is on the page, to zoom in increase this): 
+      <input type='text' id='grid_display_size' value="800" onchange="updateGridSize()"/><br>
+
+      <b><i>Small (leather) crests are 30*30, medium (iron) crests are 50*50, large (steel) crests are 70*70.</i></b>
+
+      <table id="table-materials" border="1" style="width:100%">
+      <tr><td>Material</td><td>Quantity</td></tr>
+      </table>
+
+   </div>
 
 
    </body>
