@@ -10,6 +10,111 @@ body{
 	display: inline-block;
 }
 
+/* Container to hold the sidebar and canvas */
+#draw-container {
+	width: 100%;
+	background-color: blue;
+	height: 804px;
+}
+
+/* The sidebar */
+#sidebar {
+	position: absolute;
+	background-color: red;
+
+	width: 250px;
+	height: 804px;
+
+	text-align: center
+
+}
+
+/* The sidebar button class */
+.sidebar-button-container {
+	position: relative;
+	width: 217px;
+	height: 50px;
+	border: 2px solid black;
+	text-align: left;
+}
+
+/* The sidebar button text class */
+.sidebar-button-text {
+	position: absolute;
+
+  	top: 50%;
+  	transform: translateY(-50%);
+
+  	font-size: 40px;
+
+  	margin-left: 0px;
+}
+
+/* The sidebar button duplicate class */
+.sidebar-button-duplicate {
+	position: absolute;
+	
+	margin-top: 3px;
+	margin-left: 60px;
+
+	color: #259325;
+}
+
+/* The sidebar button remove class */
+.sidebar-button-remove {
+	position: absolute;
+	
+	width: 30px;
+	height: 30px;
+
+	margin-top: 10px;
+	margin-left: 10px;
+
+	background-color: green;
+	
+}
+
+/* The sidebar button moveup class */
+.sidebar-button-moveup {
+	position: absolute;
+	
+	width: 30px;
+	height: 30px;
+
+	margin-top: 10px;
+	margin-left: 140px;
+
+	background-color: green;
+	
+}
+
+/* The sidebar button movedown class */
+.sidebar-button-movedown {
+	position: absolute;
+	
+	width: 30px;
+	height: 30px;
+
+	margin-top: 10px;
+	margin-left: 180px;
+
+	background-color: green;
+	
+}
+
+/* The canvas container */
+#wallselect-container{
+	position: absolute;
+	background-color: green;
+
+	left: 250px;
+
+	height: 804px;
+	width: 804px;
+
+}
+
+/* The canvas itself */
 #wallselect{
 
 	background-color: red;
@@ -23,23 +128,7 @@ body{
 
 }
 
-#sidebar {
-	background-color: red;
-	display: inline-block;
-	top: 0%;
-}
-
-#sidebar-container{
-	background-color: red;
-	height: 800px;
-	width: 200px;
-	display: inline-block;
-}
-
-#wallselect-container{
-	display: inline-block;
-}
-
+/* Paint button container */
 #button-container{
 	margin-left: auto;
     margin-right: auto;

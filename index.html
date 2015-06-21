@@ -2,22 +2,26 @@
 <html>
    <head>
       <title>RoK Calculator - Wall Select</title>
+
+      <!-- Load stylesheets before HTML so that the HTML is as it should look immediately - no waiting for CSS!-->
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
    </head>
    <body>
-
-   <!-- Containers must be used to ensure that the sidebar and canvas are inline 
-   <div id="sidebar-container">sdasadasdasd<br><br><br><br><br><br>
-   </div>
-   <div id="wallselect-container">
-      <canvas id="wallselect" oncontextmenu="return false;">Bad luck :/ Canvas is not supported.</canvas>
-   </div>-->
 
    <div id="draw-container">
 
       <div id="sidebar">
-         Joe Text was here
+         Joe's Sidebar<br>
+         <div id="joe-sample-button" class="sidebar-button-container">
+            <div class="sidebar-button-text">12</div>
+            <i class="fa-circle fa fa-3x fa-plus-square-o sidebar-button-duplicate"></i>
+            <!--<button class="sidebar-button-duplicate"></button>-->
+            <button class="sidebar-button-remove"></button>
+            <button class="sidebar-button-moveup"></button>
+            <button class="sidebar-button-movedown"></button>
+         </div>
       </div>
-
       <div id="wallselect-container">
          <canvas id="wallselect" oncontextmenu="return false;"></canvas>
       </div>
@@ -27,14 +31,14 @@
    <br>
 
    <div id="button-container">
-      <button type="button" class="paint-button" id="button-sod"  onclick="paint_item='sod';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-thatch"  onclick="paint_item='thatch';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-clay"  onclick="paint_item='clay';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-wood"  onclick="paint_item='wood';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-log"  onclick="paint_item='log';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-cobble"  onclick="paint_item='cobble';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-iron"  onclick="paint_item='iron';updateItemPaintButtonHighlight();"></button>
-      <button type="button" class="paint-button" id="button-stone"  onclick="paint_item='stone';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-sod" onclick="paint_item='sod';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-thatch" onclick="paint_item='thatch';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-clay" onclick="paint_item='clay';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-wood" onclick="paint_item='wood';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-log" onclick="paint_item='log';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-cobble" onclick="paint_item='cobble';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-iron" onclick="paint_item='iron';updateItemPaintButtonHighlight();"></button>
+      <button type="button" class="paint-button" id="button-stone" onclick="paint_item='stone';updateItemPaintButtonHighlight();"></button>
    </div>
 
    <div id="under-container">
@@ -48,10 +52,11 @@
       <tr><td>Material</td><td>Quantity</td></tr>
       </table>
 
+
    </div>
 
-
    </body>
+
+   <!-- Scripts at bottom of page to decrease load time - show user's the page content first, and then load functionality -->
    <script src="js.js"></script>
-   <link rel="stylesheet" type="text/css" href="style.css">
 </html>

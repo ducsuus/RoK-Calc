@@ -2,7 +2,7 @@
 
 var canvas = document.getElementById("wallselect");
 
-// Wanted to make the canvas small for dev purposes, TODO: maybe remove this.
+// Set the default canvas sizes
 canvas.style.width = "800px";
 canvas.style.height = "800px";
 canvas.width = 800;
@@ -22,7 +22,7 @@ var c = canvas.getContext("2d");
 // Get all of the images and place them in a "dictonary"
 var images = new Array();
 
-// Background image (John) TODO: change this! John wanted non-flashy colors, so I gave his face instead, turns out I'm not allowed to become a bilionaire off his face!
+// Background image
 images["e"] = new Image();
 images["e"].src = "e.png";
 
@@ -104,20 +104,9 @@ function updateItemPaintButtonHighlight(){
 // Function called on mouse down. Note that this will not work if the canvas does not start at the top left of the page.
 function mouseDown(event){
 
-    var mouse_x;
-    var mouse_y;
-
-    if (event.pageX || event.pageY) { 
-        mouse_x = event.pageX;
-        mouse_y = event.pageY;
-    }
-    else { 
-        mouse_x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; 
-        mouse_y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
-
-    mouse_x -= canvas.offsetLeft;
-    mouse_y -= canvas.offsetTop;
+    var rect = canvas.getBoundingClientRect();
+    var mouse_x = event.clientX - rect.left;
+    var mouse_y = event.clientY - rect.top;
 
     // If we are pressing left click (1) or right click (3)
     if(event.which == 1 || event.which == 3){
@@ -138,26 +127,17 @@ function mouseDown(event){
 
 function mouseUp(event){
 
-    var mouse_x = event.pageX;
-    var mouse_y = event.pageY;
+    var rect = canvas.getBoundingClientRect();
+    var mouse_x = event.clientX - rect.left;
+    var mouse_y = event.clientY - rect.top;
+
 }
 
 function mouseMove(event){
 
-    var mouse_x;
-    var mouse_y;
-
-    if (event.pageX || event.pageY) { 
-        mouse_x = event.pageX;
-        mouse_y = event.pageY;
-    }
-    else { 
-        mouse_x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; 
-        mouse_y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
-
-    mouse_x -= canvas.offsetLeft;
-    mouse_y -= canvas.offsetTop;
+    var rect = canvas.getBoundingClientRect();
+    var mouse_x = event.clientX - rect.left;
+    var mouse_y = event.clientY - rect.top;
 
     // If we are pressing left click (1) or right click (3)
     if(event.which == 1 || event.which == 3){
