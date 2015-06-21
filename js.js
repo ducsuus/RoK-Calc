@@ -92,6 +92,12 @@ var current_grid = 0;
 // The item currently being used to paint, TODO: re-evalutate the default value (its cobble for debug reasons)
 var paint_item = "cobble";
 
+// Function to switch to a layer, using a given ID (the id being the index of the layer in grid_list)
+function switchLayer(id){
+    current_grid = id;
+    updateGrid();
+}
+
 // Function to update (re-do) all of the side buttons
 function updateSideButtons(){
 
@@ -104,7 +110,7 @@ function updateSideButtons(){
     // Loop through all the layers, each time add the new button
     for (var i = 0; i < grid_list.length; i++){
         // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
-        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"alert('" + i + "-1');\" class=\"sidebar-button-clickbox\"></div><div onclick=\"alert('" + i + "-1');\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"alert('" + i + "-2');\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
+        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"alert('" + i + "-2');\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
         sidebar.innerHTML += button_string;
     }
 
@@ -155,22 +161,13 @@ function addLayer(){
  Joe may have fixed this bug, however it is also likely he managed to forget about it. To check if the bug is still there, add 12 buttons, then remove the second lowest number 6 times. If when you add a new layer it is not named correctly (the total number of layers) the bug is still here. Probably. */
 function removeLayer(id){
 
-    /* Remove layer from grid_list */
-
-    // Remove 1 elements starting from the index id
+    if(confirm("Are you sure you want to delete this layer? (Layer " + id + ")")){
+    // Remove the grid: remove 1 elements starting from the index id
     grid_list.splice(id, 1);
 
-    /* Remove buttons from HTML 
-
-    // Find the button
-    var button = document.getElementById("layer-button-" + id);
-
-    // Remove the button from the button's parent
-    button.parentNode.removeChild(button);*/
-
-    // Should just be able to use this now
+    // Update the grid
     updateSideButtons();
-
+    }
 }
 
 // Function to reset button highlighting and highlight the current button
