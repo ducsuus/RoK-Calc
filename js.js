@@ -92,6 +92,17 @@ var current_grid = 0;
 // The item currently being used to paint, TODO: re-evalutate the default value (its cobble for debug reasons)
 var paint_item = "cobble";
 
+// Function to move a layer upwards (increase index)
+function moveLayerUp(id){
+
+}
+
+
+// Function to move a layer downwards (decrease index)
+function moveLayerUp(id){
+
+}
+
 // Function to duplicate a layer
 /* WARNING NOTE TODO:
 
@@ -144,7 +155,8 @@ function updateSideButtons(){
     for (var i = 0; i < grid_list.length; i++){
         // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
         var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"duplicateLayer(" + i + ");\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
-        sidebar.innerHTML += button_string;
+        // Done this way to put the new button at the begining rather than the end
+        sidebar.innerHTML = button_string + sidebar.innerHTML;
     }
 
 }
