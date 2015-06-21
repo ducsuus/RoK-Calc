@@ -83,6 +83,7 @@ item["stone"] = [["stone slab", 1], ["clay", 5]];
 // Grid to store on screen blocks
 var grid = [];
 
+// The item currently being used to paint, TODO: re-evalutate the default value (its cobble for debug reasons)
 var paint_item = "cobble";
 
 // Function to reset button highlighting and highlight the current button

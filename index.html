@@ -13,13 +13,13 @@
 
       <div id="sidebar">
          Joe's Sidebar<br>
-         <div id="joe-sample-button" class="sidebar-button-container">
-            <div class="sidebar-button-text">12</div>
-            <i class="fa-circle fa fa-3x fa-plus-square-o sidebar-button-duplicate"></i>
-            <!--<button class="sidebar-button-duplicate"></button>-->
-            <button class="sidebar-button-remove"></button>
-            <button class="sidebar-button-moveup"></button>
-            <button class="sidebar-button-movedown"></button>
+         <div id="joe-sample-button" class="sidebar-button">
+            <div onclick="alert('1');" class="sidebar-button-clickbox"></div>
+            <div onclick="alert('1');" class="sidebar-button-text">12</div>
+            <i onclick="alert('2');" class="fa fa-3x fa-plus sidebar-button-duplicate"></i>
+            <i onclick="alert('3');" class="fa fa-3x fa-times sidebar-button-remove"></i>
+            <i onclick="alert('4');" class="fa fa-3x fa-arrow-up sidebar-button-moveup"></i>
+            <i onclick="alert('5');" class="fa fa-3x fa-arrow-down sidebar-button-movedown"></i>
          </div>
       </div>
       <div id="wallselect-container">
@@ -60,3 +60,6 @@
    <!-- Scripts at bottom of page to decrease load time - show user's the page content first, and then load functionality -->
    <script src="js.js"></script>
 </html>
+
+
+

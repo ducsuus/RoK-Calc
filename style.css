@@ -20,7 +20,7 @@ body{
 /* The sidebar */
 #sidebar {
 	position: absolute;
-	background-color: red;
+	background-color: #747474;
 
 	width: 250px;
 	height: 804px;
@@ -30,19 +30,52 @@ body{
 }
 
 /* The sidebar button class */
-.sidebar-button-container {
+.sidebar-button {
+
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+
+	
 	position: relative;
 	width: 217px;
 	height: 50px;
 	border: 2px solid black;
 	text-align: left;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* The clickbox for switching to the button's layer */
+.sidebar-button-clickbox {
+
+	position: absolute;
+	z-index: 1;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: purple;
 }
 
 /* The sidebar button text class */
 .sidebar-button-text {
+
+
+
 	position: absolute;
+	z-index: 2;
 
   	top: 50%;
+
+  	color: black;
+  	font-weight: bold;
+
   	transform: translateY(-50%);
 
   	font-size: 40px;
@@ -53,9 +86,10 @@ body{
 /* The sidebar button duplicate class */
 .sidebar-button-duplicate {
 	position: absolute;
+	z-index: 2;
 	
 	margin-top: 3px;
-	margin-left: 60px;
+	margin-left: 50px;
 
 	color: #259325;
 }
@@ -63,43 +97,34 @@ body{
 /* The sidebar button remove class */
 .sidebar-button-remove {
 	position: absolute;
-	
-	width: 30px;
-	height: 30px;
+	z-index: 2;
 
-	margin-top: 10px;
-	margin-left: 10px;
+	margin-top: 0px;
+	margin-left: 90px;
 
-	background-color: green;
-	
+	color: #B80000;
 }
 
 /* The sidebar button moveup class */
 .sidebar-button-moveup {
 	position: absolute;
-	
-	width: 30px;
-	height: 30px;
+	z-index: 2;
 
-	margin-top: 10px;
-	margin-left: 140px;
+	margin-top: 0px;
+	margin-left: 130px;
 
-	background-color: green;
-	
+	color: #191966;	
 }
 
 /* The sidebar button movedown class */
 .sidebar-button-movedown {
 	position: absolute;
-	
-	width: 30px;
-	height: 30px;
+	z-index: 2;
 
-	margin-top: 10px;
-	margin-left: 180px;
-
-	background-color: green;
+	margin-top: 0px;
+	margin-left: 175px;
 	
+	color: #191966;
 }
 
 /* The canvas container */
