@@ -94,13 +94,45 @@ var paint_item = "cobble";
 
 // Function to move a layer upwards (increase index)
 function moveLayerUp(id){
+    // If the new proposed position is not out of the bounds of the array...
+    if (id + 1 < grid_list.length){
+        // Copy the target into a temp array
+        var temp_grid = grid_list[id];
 
+        // Delete the old copy
+        grid_list.splice(id, 1);
+
+        // Add (duplicate) the layer
+        grid_list.splice(id + 1, 0, temp_grid);
+
+        // Update the currently displayed grid
+        current_grid = id + 1;
+
+        updateGrid();
+        updateSideButtons();
+    }   
 }
 
 
 // Function to move a layer downwards (decrease index)
-function moveLayerUp(id){
+function moveLayerDown(id){
+    // If the new proposed position is not out of the bounds of the array...
+    if (id - 1 >= 0){
+        // Copy the target into a temp array
+        var temp_grid = grid_list[id];
 
+        // Delete the old copy
+        grid_list.splice(id, 1);
+
+        // Add (duplicate) the layer
+        grid_list.splice(id - 1, 0, temp_grid);
+
+        // Update the currently displayed grid
+        current_grid = id - 1;
+
+        updateGrid();
+        updateSideButtons();
+    }   
 }
 
 // Function to duplicate a layer
@@ -113,8 +145,6 @@ This means that a "duplicated" layer, is just a reference to the original array,
 May be removed, but again Joe...
 */
 function duplicateLayer(id){
-
-    console.log("b: " + grid_list.length);
 
     /* So JavaScript loves to copy references to arrays, instead of "actual" arrays... We have to loop through the array and manually make a copy of each value... */
 
@@ -132,14 +162,13 @@ function duplicateLayer(id){
     updateGrid();
     updateSideButtons();
 
-    console.log("a: " + grid_list.length);
-
 }
 
 // Function to switch to a layer, using a given ID (the id being the index of the layer in grid_list)
 function switchLayer(id){
     current_grid = id;
     updateGrid();
+    updateSideButtons();
 }
 
 // Function to update (re-do) all of the side buttons
@@ -153,8 +182,9 @@ function updateSideButtons(){
 
     // Loop through all the layers, each time add the new button
     for (var i = 0; i < grid_list.length; i++){
+
         // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
-        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"duplicateLayer(" + i + ");\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + i + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + i + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
+        var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button" + ((i == current_grid) ? " sidebar-button-current" : "") + "\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"duplicateLayer(" + i + ");\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"moveLayerUp(" + i + ");\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"moveLayerDown(" + i + ");\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
         // Done this way to put the new button at the begining rather than the end
         sidebar.innerHTML = button_string + sidebar.innerHTML;
     }
@@ -406,3 +436,4 @@ function updateGrid(){
 
 changeSize(10);
 updateGrid();
+updateSideButtons();
