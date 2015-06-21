@@ -29,6 +29,11 @@ body{
 
 }
 
+/* The sidebar button container */
+#sidebar-button-container {
+
+}
+
 /* The sidebar button class */
 .sidebar-button {
 
@@ -40,7 +45,7 @@ body{
 	-o-user-select: none;
 	user-select: none;
 
-	
+
 	position: relative;
 	width: 217px;
 	height: 50px;
@@ -49,6 +54,7 @@ body{
 
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 2px;
 }
 
 /* The clickbox for switching to the button's layer */
