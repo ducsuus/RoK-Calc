@@ -11,9 +11,12 @@
 
    <div id="draw-container">
 
-      <div id="sidebar">
-         Joe's Sidebar<i onclick="addLayer();" class="fa fa-3x fa-plus sidebar-button-duplicate"></i><br><br><br><br><br><br><br>   
+      <div id="sidebar"> 
+
+         <div onclick="addLayer();" class="sidebar-button"><i id="button-add-new-layer" class="fa fa-3x fa-plus"></i><div class="sidebar-button-text" style="font-size: 27px; margin-left: 40px;">Add new layer</div></div>
+
          <div id="sidebar-button-container">
+
             <div id="layer-button-0" class="sidebar-button">
                <div onclick="switchLayer(0);" class="sidebar-button-clickbox"></div>
                <div onclick="switchLayer(0);" class="sidebar-button-text">0</div>

@@ -172,6 +172,16 @@ body{
     width: 428px;
 }
 
+/* The add new button design */
+#button-add-new-layer{
+	z-index: 2;
+	
+	margin-top: 3px;
+
+	color: #259325;
+
+}
+
 /* The general button design */
 .paint-button{
 	border: 4px solid black;
