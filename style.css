@@ -197,16 +197,16 @@ body{
 	background-image: url("sod.png");
 }
 #button-thatch {
-	background-image: url("thatch.png");
+	background-image: url("thatch.jpg");
 }
 #button-clay {
-	background-image: url("clay.png");
+	background-image: url("clay.jpg");
 }
 #button-wood {
-	background-image: url("wood.png");
+	background-image: url("wood.jpg");
 }
 #button-log {
-	background-image: url("log.png");
+	background-image: url("log.jpg");
 }
 #button-cobble {
 	background-image: url("cobble.png");
@@ -215,7 +215,7 @@ body{
 	background-image: url("iron.png");
 }
 #button-stone {
-	background-image: url("stone.png");
+	background-image: url("stone.jpg");
 }
 
 #under-container{

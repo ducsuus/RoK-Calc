@@ -35,16 +35,16 @@ images["sod"] = new Image();
 images["sod"].src = "sod.png";
 
 images["thatch"] = new Image();
-images["thatch"].src = "thatch.png";
+images["thatch"].src = "thatch.jpg";
 
 images["clay"] = new Image();
-images["clay"].src = "clay.png";
+images["clay"].src = "clay.jpg";
 
 images["wood"] = new Image();
-images["wood"].src = "wood.png";
+images["wood"].src = "wood.jpg";
 
 images["log"] = new Image();
-images["log"].src = "log.png";
+images["log"].src = "log.jpg";
 
 images["cobble"] = new Image();
 images["cobble"].src = "cobble.png";
@@ -53,7 +53,7 @@ images["iron"] = new Image();
 images["iron"].src = "iron.png";
 
 images["stone"] = new Image();
-images["stone"].src = "stone.png";
+images["stone"].src = "stone.jpg";
 
 // Item recipe list
 var item = new Array();
