@@ -136,14 +136,6 @@ function moveLayerDown(id){
 }
 
 // Function to duplicate a layer
-/* WARNING NOTE TODO:
-
-A "bug" in this is causing the array not to be duplicated, but for a reference to be copied :(
-
-This means that a "duplicated" layer, is just a reference to the original array, and therefore modification smade on one array apply to the other, as they are the same array...
-
-May be removed, but again Joe...
-*/
 function duplicateLayer(id){
 
     /* So JavaScript loves to copy references to arrays, instead of "actual" arrays... We have to loop through the array and manually make a copy of each value... */
@@ -161,6 +153,7 @@ function duplicateLayer(id){
     // TODO: this could possible be an useless function call - if not needed, remove
     updateGrid();
     updateSideButtons();
+    updateTable();
 
 }
 
@@ -183,9 +176,9 @@ function updateSideButtons(){
     // Loop through all the layers, each time add the new button
     for (var i = 0; i < grid_list.length; i++){
 
-        // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
+        // The button 'string' - this just generates the button HTML, and plugs the ID for that button into it
         var button_string = "<div id=\"layer-button-" + i + "\" class=\"sidebar-button" + ((i == current_grid) ? " sidebar-button-current" : "") + "\"><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-clickbox\"></div><div onclick=\"switchLayer(" + i + ");\" class=\"sidebar-button-text\">" + i + "</div><i onclick=\"duplicateLayer(" + i + ");\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + i + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"moveLayerUp(" + i + ");\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"moveLayerDown(" + i + ");\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
-        // Done this way to put the new button at the begining rather than the end
+        // Add the button HTML to the begining of the sidebar (so it appears at the top)
         sidebar.innerHTML = button_string + sidebar.innerHTML;
     }
 
@@ -212,27 +205,12 @@ function addLayer(){
     // Push it to the grid_list
     grid_list.push(new_grid);
 
-    /* Generate and add the new button 
-
-    var sidebar = document.getElementById("sidebar");
-
-    // TODO: Update this to make sure that all the onclicks are correct - replace the alert()s with an actual function!
-    var button_string = "<div id=\"layer-button-" + id + "\" class=\"sidebar-button\"><div onclick=\"alert('" + id + "-1');\" class=\"sidebar-button-clickbox\"></div><div onclick=\"alert('" + id + "-1');\" class=\"sidebar-button-text\">" + id + "</div><i onclick=\"alert('" + id + "-2');\" class=\"fa fa-3x fa-plus sidebar-button-duplicate\"></i><i onclick=\"removeLayer('" + id + "');\" class=\"fa fa-3x fa-times sidebar-button-remove\"></i><i onclick=\"alert('" + id + "-4');\" class=\"fa fa-3x fa-arrow-up sidebar-button-moveup\"></i><i onclick=\"alert('" + id + "-5');\" class=\"fa fa-3x fa-arrow-down sidebar-button-movedown\"></i></div>";
-
-    sidebar.innerHTML += button_string;*/
-
     // We should just be able to use this now
     updateSideButtons();
 
 }
 
 // Function to remove layers using a given ID. This ID is the index of the grid in the grid_list
-
-/* TODO WARNING:
-
- As of writing this, there was a massive flaw in the design of the naming system; buttons with a higher index than that of the button being deleted tend to have an index that is no longer valid; different to what it was. It therefore causes the delete button to not work properly.
-
- Joe may have fixed this bug, however it is also likely he managed to forget about it. To check if the bug is still there, add 12 buttons, then remove the second lowest number 6 times. If when you add a new layer it is not named correctly (the total number of layers) the bug is still here. Probably. */
 function removeLayer(id){
 
     if(grid_list.length > 1 && confirm("Are you sure you want to delete this layer? (Layer " + id + ")")){
@@ -269,7 +247,6 @@ function mouseDown(event){
 
     // If we are pressing left click (1) or right click (3)
     if(event.which == 1 || event.which == 3){
-        console.log(grid_list[current_grid].length);
         var squareSize = canvas.width / grid_list[current_grid].length;
 
         var xcoord = Math.floor(mouse_x / squareSize);
@@ -280,10 +257,13 @@ function mouseDown(event){
         if (event.which == 3)
             grid_list[current_grid][xcoord][ycoord] = "e";
 
-        updateGrid()
+        updateGrid();
+        updateTable();
     }
 }
 
+// Function called when we release the mouse
+// TODO: this is rather redundant, remove it or make it usefull?
 function mouseUp(event){
 
     var rect = canvas.getBoundingClientRect();
@@ -292,6 +272,7 @@ function mouseUp(event){
 
 }
 
+// Function called when the mouse moves
 function mouseMove(event){
 
     var rect = canvas.getBoundingClientRect();
@@ -310,10 +291,12 @@ function mouseMove(event){
         if (event.which == 3)
             grid_list[current_grid][xcoord][ycoord] = "e";
 
-        updateGrid()
+        updateGrid();
+        updateTable();
     }
 }
 
+// Funtion to clear the grid
 function clearGrid(){
     c.fillStyle = "#FFFFFF";
     c.fillRect(0, 0, canvas.width, canvas.height);
@@ -321,14 +304,6 @@ function clearGrid(){
 
 // Function to re-size the grid, clearing out the old grid contents
 function changeSize(size){
-    // Legacy code when layers were not a thing...
-    /*grid = []
-    for (var x = 0; x < size; x++){
-        grid.push([]);
-        for (var y = 0; y < size; y++){
-            grid[x].push("e");
-        }
-    }*/
 
     grid_list = [[]];
 
@@ -344,7 +319,7 @@ function changeSize(size){
 
 // Function to be called upon the update of the size by the user
 function updateSize(){
-    // Ensure the grid is never bigger than 1000*1000
+    // Ensure the grid is never bigger than 100*100 TODO: re-evaluate if this is a good size; it doesn't lag, but maybe people need bigger?
     changeSize(Math.min(100, document.getElementById("grid_size").value));
     updateGrid();
 }
@@ -369,7 +344,8 @@ function getRandomColor() {
     return color;
 }
 
-// Function to draw an icon of something, like a block.
+// Function to draw an icon of something, like a block
+// (x-coord, y-coord, width, height, name of the icon in the images object)
 function drawIcon(x, y, w, h, icon){
 
     if (icon in images){
@@ -386,13 +362,53 @@ function drawIcon(x, y, w, h, icon){
 
 }
 
+// Function to update the materials table.
+function updateTable(){
+
+    /* Get a list of the materials for the table */
+
+    var materials = [];
+
+    // Loop through all the layers
+    for (var grid_index_iterator = 0; grid_index_iterator < grid_list.length; grid_index_iterator++){
+        // Loop through the x axis
+        for (var x = 0; x < grid_list[grid_index_iterator].length; x++){
+            // Loop through the y axis
+            for (var y = 0; y < grid_list[grid_index_iterator][x].length; y++){
+                // Loop through the different materials in the recipe of the item in the current block
+                for (var i = 0; i < item[grid_list[grid_index_iterator][x][y]].length; i++) {
+                    // If the material is not already in the materials list insert it
+                    if (typeof materials[item[grid_list[grid_index_iterator][x][y]][i][0]] == "undefined"){
+                        materials[item[grid_list[grid_index_iterator][x][y]][i][0]] = item[grid_list[grid_index_iterator][x][y]][i][1];
+                    } 
+                    // Otherwise add it on to the existing material
+                    else{
+                        materials[item[grid_list[grid_index_iterator][x][y]][i][0]] += item[grid_list[grid_index_iterator][x][y]][i][1];
+                    }
+                }
+
+            }
+        }
+    }
+
+    /* Update the table */
+
+    var table_string = "<tr><td>Material</td><td>Quantity</td></tr>"
+
+    for (var property in materials){
+        table_string += "<tr><td>" + property + "</td><td>" + materials[property] + "</td></tr>";
+
+    }
+
+    document.getElementById("table-materials").innerHTML = table_string;
+
+}
+
 // Function to update the grid which the user sees
 function updateGrid(){
 
     // Variable to store list of variables
     var materials = new Array();
-
-    /* Update the grid */
 
     // Clear the grid
     clearGrid();
@@ -408,32 +424,12 @@ function updateGrid(){
     for (var x = 0; x < width; x++){
         for (var y = 0; y < height; y++){
             drawIcon(x * squareSize, y * squareSize, squareSize, squareSize, grid_list[current_grid][x][y]);
-
-            // For the current tile add its materials to the material list in preparation for updating the table next
-            // Loop through the recipe, copy, and adjust all recipe materials
-            for (var i = 0; i < item[grid_list[current_grid][x][y]].length; i++) {
-                if (typeof materials[item[grid_list[current_grid][x][y]][i][0]] == "undefined"){
-                    materials[item[grid_list[current_grid][x][y]][i][0]] = item[grid_list[current_grid][x][y]][i][1];
-                } else{
-                    materials[item[grid_list[current_grid][x][y]][i][0]] += item[grid_list[current_grid][x][y]][i][1];
-                }
-            }
         }
     }
-
-    /* Update the table below the grid */
-
-    var table_string = "<tr><td>Material</td><td>Quantity</td></tr>"
-
-    for (var property in materials){
-        table_string += "<tr><td>" + property + "</td><td>" + materials[property] + "</td></tr>";
-
-    }
-
-    document.getElementById("table-materials").innerHTML = table_string;
 
 }
 
 changeSize(10);
 updateGrid();
 updateSideButtons();
+updateTable();
