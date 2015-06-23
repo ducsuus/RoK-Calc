@@ -1,11 +1,16 @@
 <!-- RoK-Calc - testing with the idea of wall select.-->
 <html>
    <head>
-      <title>RoK Calculator - Wall Select</title>
+       <title>RoK Calculator - Wall Select</title>
 
-      <!-- Load stylesheets before HTML so that the HTML is as it should look immediately - no waiting for CSS!-->
-      <link rel="stylesheet" type="text/css" href="style.css">
-      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+       <!-- Load stylesheets before HTML so that the HTML is as it should look immediately - no waiting for CSS!-->
+       <link rel="stylesheet" type="text/css" href="style.css">
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+       
+       <!-- Bootstrap-->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
    </head>
    <body>
 
@@ -13,7 +18,7 @@
 
       <div id="sidebar"> 
 
-         <div onclick="addLayer();" class="sidebar-button"><i id="button-add-new-layer" class="fa fa-3x fa-plus"></i><div class="sidebar-button-text" style="font-size: 27px; margin-left: 40px;">Add new layer</div></div>
+         <div onclick="addLayer();" class="sidebar-button"><i id="button-add-new-layer" class="fa fa-3x fa-plus"></i><div class="sidebar-button-text" style="font-size: 25px; margin-left: 35px;">Add new layer</div></div>
 
          <div id="sidebar-button-container">
 
@@ -45,7 +50,9 @@
       <button type="button" class="paint-button" id="button-iron" onclick="paint_item='iron';updateItemPaintButtonHighlight();"></button>
       <button type="button" class="paint-button" id="button-stone" onclick="paint_item='stone';updateItemPaintButtonHighlight();"></button>
    </div>
-
+    
+   <br>
+       
    <div id="under-container">
       <br>Size: <input type='text' id='grid_size' value="10" onchange="updateSize()"/><br>
       Grid size (how big the grid is on the page, to zoom in increase this): 
@@ -53,7 +60,7 @@
 
       <b><i>Small (leather) crests are 30*30, medium (iron) crests are 50*50, large (steel) crests are 70*70.</i></b>
 
-      <table id="table-materials" border="1" style="width:100%">
+      <table id="table-materials" >
       <tr><td>Material</td><td>Quantity</td></tr>
       </table>
 

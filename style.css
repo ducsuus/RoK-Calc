@@ -13,7 +13,7 @@ body{
 /* Container to hold the sidebar and canvas */
 #draw-container {
 	width: 100%;
-	background-color: blue;
+	/* background-color: blue; */
 	height: 804px;
 }
 
@@ -26,11 +26,6 @@ body{
 	height: 804px;
 
 	text-align: center
-
-}
-
-/* The sidebar button container */
-#sidebar-button-container {
 
 }
 
@@ -141,8 +136,8 @@ body{
 /* The canvas container */
 #wallselect-container{
 	position: absolute;
-	background-color: green;
-
+	/* background-color: green; */
+    
 	left: 250px;
 
 	height: 804px;
@@ -153,7 +148,7 @@ body{
 /* The canvas itself */
 #wallselect{
 
-	background-color: red;
+	/* background-color: red; */
 
 	width: 200px;
 	height: 100px;
@@ -189,6 +184,7 @@ body{
 	height: 50px;
 	background-color: blue;
 	background-size: 100% 100%;
+    float: left;
 }
 
 /* Button textures */
